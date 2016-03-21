@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		
+		<title>For优 我的订单</title>
+	</head>
+	<body>
+		<include file='App/Home/View/Common/commonhead.html'/>
+
+		<div id="index-header" data-campusId="{$campusId}">
+			<include file='App/Home/View/Common/commonsearch.html'/>
+			<include file='App/Home/View/Common/commonnav.html'/>
+
+            <div id="info"></div>
+			<div id="nav-breadcrumb" class="wrapper">
+				<ul class="breadcrumb">
+					<li><a href="{:U('Index/index',array('campusId'=>$campusId))}">首页</a></li>
+					<li><a href="{:U('/Home/Person/personHomePage',array('campusId'=>$campusId))}">我的For优</a></li>
+					<li><a href="{:U('/Home/Person/orderManage',array('campusId'=>$campusId))}">我的订单</a></li>
+					<li class="active">
+						<a href="__SELF__">
+							<?php
+								switch($status)
+								{
+									case 0:echo "全部";break;
+									case 1:echo "待付款";break;
+									case 2:echo "待确认";break;
+									case 3:echo "配送中";break;
+									case 4:echo "待评价";break;
+									case 5:echo "已完成";break;
+									default:echo ""; 
+								}
+							?>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="wrapper clearfix" >
+			<div id="person-nav-side">
+				<ul>
+					<span>我的订单</span>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>0))}">全部</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>1))}">待付款</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>2))}">待确认</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>3))}">配送中</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>4))}">待评价</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>5))}">已完成</a></li>
+				</ul>
+				<ul>
+					<span>资料管理</span>
+					<li><a href="{:U('Person/personInfo',array('campusId'=>$campusId))}">个人信息</a></li>
+					<li><a href="{:U('Person/locaManage',array('campusId'=>$campusId))}">地址管理</a></li>
+					<li><a href="{:U('Person/resetpword',array('campusId'=>$campusId))}">账户安全</a></li>
+				</ul>
+				<ul>
+					<span>服务中心</span>
+					<li><a>联系客服</a></li>
+					<li><a>关于我们</a></li>
+					<li><a>意见反馈</a></li>
+				</ul>
+			</div>
+		
+			<div id="person-info-body">
+				<div class="tab-div" data-status="{$status}">
+					<a id="tab-1" class="button" href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>0))}">
+						全部
+					</a>
+					<a id="tab-2" class="button" href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>1))}">
+						待付款
+					</a>
+					<a id="tab-3" class="button" href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>2))}">
+						待确认
+					</a>
+					<a id="tab-4" class="button" href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>3))}">
+						配送中
+					</a>
+					<a id="tab-5" class="button" href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>4))}">
+						待评价
+					</a>
+					<a id="tab-6" class="button" href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>5))}">
+						已完成
+					</a>
+				</div>
+				<div class="personhome-order-info">
+					<table>
+						<colgroup>
+							<col width="420">
+							<col width="140">
+							<col width="140">
+							<col width="200">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>订单商品</th>
+								<th>订单状态</th>
+								<th>总金额</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<foreach name="orderList" item="page">
+						    <if condition="$key eq 0">
+						    <tbody>
+						       <assign name="currentId" value="$page['together_id']"/>
+						        
+						       <tr class="order-info-head">
+							       	<td colspan="2">
+							       		订单编号：<span>{$page.together_id}</span>
+							       		提交时间：<span>{$page.together_date}</span>		
+							       	</td>
+							       	<td colspan="2">
+							       		<if condition="$page['status'] eq 1">
+							       			<button class="order-manage-button order-manage-3 together-order-manage fr" data-togetherId="{$page['together_id']}">
+													立即付款
+										    </button>
+										<elseif condition="$page['status'] eq 2"/>
+					                            <button class="order-manage-button order-manage-4 together-order-manage fr" data-togetherId="{$page['together_id']}">
+													取消订单
+										        </button>
+							       		</if>   
+							       	</td>	
+						       </tr>
+						      
+						    <elseif condition="$page.together_id nheq $currentId" /> 
+						  
+								</tbody>
+						    	<tbody>	
+									<assign name="currentId" value="$page['together_id']"/>
+									<tr class="order-info-head">
+										<td colspan="2">
+											订单编号：<span>{$page.together_id}</span>
+											提交时间：<span>{$page.together_date}</span>
+										</td>
+										<td colspan="2">
+											<if condition="$page['status'] eq 1">
+							       			<button class="order-manage-button order-manage-3 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
+													立即付款
+										    </button>
+										    <elseif condition="$page['status'] eq 2"/>
+					                            <button class="order-manage-button order-manage-4 together-order-manage pull-right" data-togetherId="{$page['together_id']}">
+													取消订单
+										        </button>
+							       		    </if>
+										</td>	
+									</tr>
+							</if>
+										<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
+									<tr class="order-info-detailed" data-status="{$page['order_id']}">
+										<td>
+											<img class="fl" src="{$page.img_url}" alt="">
+											<div class="fl">
+												<p>{$page.foodname}</p>
+												<p>{$page.message}</p>
+												<p>共{$page.order_count}件商品</p>
+											</div>		
+										</td>
+										<td>
+											<?php
+												switch($page['status'])
+												{
+													case 1:echo "待付款";break;
+													case 2:echo "待确认";break;
+													case 3:echo "配送中";break;
+													case 4:echo "待评价";break;
+													case 5:echo "已完成";break;
+													case 9:echo "退款中";
+													default:echo ""; 
+												}
+											?>
+										</td>
+										<td class='font-13'>
+											￥{$page.Price}
+										</td >
+										<td>
+										<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
+										<?php
+
+
+											switch($page['status'])
+											{
+												case 1:
+												echo 
+												'<button class="order-manage-button order-manage-3 per-order-manage">
+													立即付款
+												</button>
+												<button class="order-manage-button order-manage-4">
+													取消订单
+												</button>';
+												break;
+												/*case 2:
+												echo
+												'<button class="order-manage-button order-manage-4">
+													取消订单
+												</button>';
+												break;*/
+												case 3:
+												echo 
+												'<button class="order-manage-button order-manage-5">
+													确认收货
+												</button>';
+												break;
+												case 4:
+												echo 
+												'<button class="order-manage-button order-manage-6">
+													立即评价
+												</button>
+												<button class="order-manage-button order-manage-2">
+													删除订单 
+												</button>';
+												break;
+												case 5:
+												echo 
+												'<button class="order-manage-button order-manage-2">
+													删除订单
+												</button>';
+												break;
+												default:echo ""; 
+											}
+										?>
+
+											<!-- <p><a>订单详情</a></p>	 -->
+											<input type="text" class="order-none none" id="{$page.order_id}" value="{$page.order_id}" />	
+										</td>							
+									</tr>						
+							</foreach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="msg-page">
+			    <div class="page">{$orderpage}</div>
+		    </div>
+		</div>
+
+		<include file='App/Home/View/Common/commontail.html'/>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript">
+		       var $campusId=$('#index-header').attr("data-campusId");
+		       console.log($campusId);
+               var cancelOrderUrl="{:U('/Home/Person/cancelOrder')}";
+               var deleteOrderUrl="{:U('/Home/Person/deleteSmallOrder')}"
+               var goodPaymentsUrl="{:U('/Home/Person/goodsPayment')}";
+               var confirmReceiveUrl="{:U('Home/Person/confirmReceive')}";
+               var commentUrl="{:U('Home/Index/Comment')}";
+		</script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/ordermanage.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+	</body>
+</html>

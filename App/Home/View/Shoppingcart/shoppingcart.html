@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+	<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+	<link href="__PUBLIC__/css/style-y.css" rel="stylesheet"/>
+
+	<title>For优 购物车</title>
+	<style>
+		body{
+			background-color: #fff;
+		}
+	</style>
+</head>
+<body>
+	<include file='App/Home/View/Common/commonhead.html'/>
+	<div id="index-header" >
+		<include file='App/Home/View/Common/commonsearch.html'/>
+
+		<include file='App/Home/View/Common/commonnav.html'/>
+
+		<div id="nav-breadcrumb" class="wrapper">
+			<ul class="breadcrumb">
+				<li><a href="{:U('Index/index')}">首页</a></li>
+				<li class="active"><a href="__SELF__">购物车</a></li>
+			</ul>
+		</div>
+	</div><!--.index-header-->
+    <div id="info" data-campusId="{$campusId}"></div>
+
+	<div class="wrapper">
+		<ul id="full-discount-price" class="none">
+			<foreach name="preferential" item="vo">
+				<li><span>{$vo.need_number}</span> <p>{$vo.discount_num}</p> </li>
+			</foreach>
+		</ul>
+		<div id="checkall">
+			<input id="checkall-input" type="checkbox" class="checkbox-f">
+			<label for="checkall-input">全选</label>
+		</div>
+	
+		<div class="wrapper">
+			<div class="sep-row"></div>
+			<table>
+				<colgroup>
+				<col width="20">
+				<col width="400">
+				<col width="100">
+				<col width="260">
+				<col width="215">
+				<col width="110">
+			</colgroup>
+
+			<foreach name="shoppingcart" item="shopping">
+				<tr class="order-info-detailed" data-orderId="{$shopping.order_id}" data-fulldiscount="{$shopping.is_full_discount}">
+					<td>
+						<input type="checkbox" name="isChecked" class="check-good">
+					</td>
+					<td>
+						<img class="fl" src="{$shopping.img_url}" alt="">
+						<div class="fl">
+							<p class='b'>{$shopping.name}</p>
+							<p>{$shopping.message}</p>
+							<if condition="$shopping.is_full_discount eq 1">
+								<div class="full-discount-wrapper">
+									<span class="full-discount">
+										减
+									</span>
+									<span>
+										<foreach name="preferential" item="vi">
+											满{$vi.need_number}减{$vi.discount_num}&nbsp;
+										</foreach>
+									</span>
+								</div>
+							</if>
+							
+						</div>		
+					</td>
+					<td></td>
+					<td class="good-price" style="padding-left:-10px">
+						<if condition="$shopping.is_discount eq 1">
+							<span>￥{$shopping.discount_price|number_format=###,1}</span><span>原价:￥{$shopping.price|number_format=###,1}</span>
+							<else/><span>￥{$shopping.price|number_format=###,1}</span><span style="visibility:hidden">原价:￥{$shopping.price|number_format=###,1}</span>
+						</if>	
+					</td >
+					<td>
+						<a class="sub-goods" data-orderId="{$shopping.order_id}">-</a>
+						<input class="goods-count" type="text" value="{$shopping.order_count}" disabled="true">
+						<a class="add-goods" data-orderId="{$shopping.order_id}">+</a>
+					</td>
+					<td>					
+						<a name="deleteSmallOrder">删除</a></p>				
+					</td>							
+				</tr>
+			</foreach>
+		</table>
+	</div><!-- /good1-->	
+
+	<div>
+		<a class="deletegoods">
+			<span class="glyphicon glyphicon-trash"></span>
+			删除
+		</a>
+	</div>
+	<div class="checknow">
+		<span class="pricefin-b">合计：</span><span class="pricefin">0.0元</span></br>
+		<span class="orgin-price-l">原价：</span><span class="orgin-price">0.0元</span>
+		<br>
+		<a class="buttonright btn">立即结算</a>
+	</div>
+</div>
+
+	<include file='App/Home/View/Common/commontail.html'/>
+	<include file='App/Home/View/Common/commonlocation.html'/>
+   
+	<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+	<script type="text/javascript">
+        var $campusId=$("#info").attr('data-campusId');
+    </script>
+	<script src="__PUBLIC__/script/shoppingcart.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+</body>
+</html>

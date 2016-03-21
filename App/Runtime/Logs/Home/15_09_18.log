@@ -1,0 +1,20 @@
+[ 2015-09-18T08:21:10+08:00 ] 127.0.0.1 /foru/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.007202s ]
+
+[ 2015-09-18T08:23:25+08:00 ] 127.0.0.1 /foru/index.php/Home/index/goodslist/categoryId/105/campusId/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000493s ]
+
+[ 2015-09-18T09:44:32+08:00 ] 127.0.0.1 /foru/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000033s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005440s ]
+
+[ 2015-09-18T13:51:16+08:00 ] 127.0.0.1 /foru/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000512s ]
+

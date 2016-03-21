@@ -1,0 +1,15 @@
+[ 2015-10-11T19:09:28+08:00 ] 127.0.0.1 /foru/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.007457s ]
+
+[ 2015-10-11T19:09:32+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000731s ]
+
+[ 2015-10-11T19:09:33+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000058s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000619s ]
+

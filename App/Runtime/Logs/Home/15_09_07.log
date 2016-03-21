@@ -1,0 +1,50 @@
+[ 2015-09-07T11:41:42+08:00 ] 127.0.0.1 /foru/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.004965s ]
+
+[ 2015-09-07T11:41:44+08:00 ] 127.0.0.1 /foru/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000518s ]
+
+[ 2015-09-07T11:43:13+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000435s ]
+
+[ 2015-09-07T11:59:14+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/register.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000560s ]
+
+[ 2015-09-07T21:29:55+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/checkUserExist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000036s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001709s ]
+
+[ 2015-09-07T21:29:55+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/checkMailExist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000425s ]
+
+[ 2015-09-07T21:30:02+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/checkMailExist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000073s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000817s ]
+
+[ 2015-09-07T21:30:45+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/checkMailExist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000418s ]
+
+[ 2015-09-07T21:30:49+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/checkMailExist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000465s ]
+
+[ 2015-09-07T21:30:50+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/checkUserExist
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000045s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001038s ]
+

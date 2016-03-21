@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>For优 确认订单</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		<link rel="stylesheet" href="__PUBLIC__/css/style_li.css" />
+	</head>
+	<body>
+		
+		<include file='App/Home/View/Common/commonhead.html'/>
+			<div id="index-header" data-campusId="{$campusId}">
+				<include file='App/Home/View/Common/commonsearch.html'/>
+
+				<include file='App/Home/View/Common/commonnav.html'/>
+
+				<div id="nav-breadcrumb" class="wrapper">
+					<ul class="breadcrumb">
+						<li><a href="{:U('Index/index',array('campusId'=>$campusId))}">首页</a></li>
+						<li><a href="{:U('ShoppingCart/shoppingcart',array('campusId'=>$campusId))}">购物车</a></li>
+						<li class="active"><a href="__SELF__">确认订单</a></li>
+					</ul>
+				</div>
+			</div>
+            <div id="info"></div>
+			<div class="main-wrapper">
+
+				<div id="addressColumn" class="wrapper main-wrapper-1">
+					<table>
+						<colgroup>
+							<col width="300"/>
+							<col width="550"/>
+							<col width="250"/>
+						</colgroup>
+						<thead>
+							<tr>
+								<th colspan="3">收货信息</th>
+							</tr>
+						</thead>
+						<tbody>
+							<foreach name="address" item="v">
+								<tr>
+									<td>
+										<input type="radio" name="information" value="{$v.rank}" class="main-wrapper-1-radio"
+										<?php
+											if ($v['tag'] == 0)
+											{
+												echo "checked='checked'";
+											}
+										?>
+										/>
+										收货人:<span>{$v.name}</span><br />
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系电话：<span>{$v.phone_id}</span>
+									</td>
+									<td>
+										<span>{$v.address}</span>
+									</td>
+									<td>
+										<input type="button" value="修改" class="main-wrapper-1-btn-revise"/>
+										<input type="button" value="删除路径" class="main-wrapper-1-btn-delete"/>
+										<input class="phone-none none" value="{$v.phone}"> 
+										<input class="rank-none none"  value="{$v.rank}">
+									</td>
+								</tr>
+							</foreach>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="wrapper main-wrapper-2-1">
+					<input type="button" value="新增收货地址" id="new_address"/>
+				</div>
+				
+				<div class="wrapper main-wrapper-2">
+					<form action="{:U('Person/addOrReviseSave',array('campusId'=>$campusId,togetherId=>$orderInfo['together_id']))}" method="GET">
+					    <div class="none">
+							<label for="rank">rank:</label>
+							<input type="text" name="rank" id="rank" class="person" value="0"/>
+						</div>
+						<div>
+							<label for="userName">收货人：</label>
+							<input type="text" name="user-name" id="userName" class="person" required/>
+						</div>
+						<div>
+							<label>城市：</label>
+							<select  name="select-location-1" id="city-change">
+							</select>
+							<label>校区：</label>
+							<select  name="select-location-2" id="campus-change">
+							</select>
+						</div>
+						<div>
+							<label for="detailedLoc">详细地址：</label>
+							<input type="text" name="detailed-location" id="detailedLoc" class="address" required/>
+						</div>
+						<div>
+							<label for="phoneNum">手机号：</label>
+							<input type="text" pattern="1[0-9]{10}"name="phone-number" id="phoneNum" class="phone" required/>
+						</div>
+						<div class="div_but">
+							<input type="text" id="page" name="page" value="1" class="none"/>
+							<input type="submit" id="save_submit" value="保存"   class="but but-submit"/>
+							<input type="submit" id="revise_submit" value="保存" class="but but-submit none" />
+							<input type="button" id="" value="取消"  class="but but-button"/>
+						</div>
+					</form>
+				</div>
+			<form>
+				<div class="wrapper main-wrapper-3">
+					<table class="wrapper">
+						<colgroup>
+							<col style="width: 400px;"/>
+						</colgroup>
+						<thead>
+							<tr>
+								<th>支付方式</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<input type="radio" name="pay-way" value="alipay_wap" checked="checked"/>
+									<img src="__PUBLIC__/img/zhifubao.png" alt="" />
+									支付宝支付
+								</td>
+							</tr>
+							<!-- <tr>
+								<td>
+									<input type="radio" name="pay-way" value=""/>&nbsp;&nbsp;&nbsp;<img src="__PUBLIC__/img/weixin.png" alt="" />&nbsp;&nbsp;&nbsp;&nbsp;微信支付
+								</td>
+							</tr> -->
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="personhome-order-info main-wrapper-4 wrapper">
+					<table class="wrapper">
+						<colgroup>
+							<col width="400">
+							<col width="260">
+							<col width="170">
+							<col width="270">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>商品名称</th>
+								<th>单价</th>
+								<th>数量</th>
+								<th>总价</th>
+							</tr>
+						</thead>
+						<tbody>				
+							<tr class="order-info-head">
+								<td colspan="3">
+									订单编号：<span>{$orderInfo.together_id}</span>
+									提交时间：<span>{$orderInfo.together_date}</span>
+									<input name="together-id" value="{$orderInfo.together_id}" class="none"/>
+									<input name="orderIDstr" value="{$orderIDstr}" class="none"/>
+								</td>
+								<td colspan="1">
+									
+								</td>	
+							</tr>
+							<!-- 追加1 删除2 付款3 取消4 确认5  评价6-->
+							<foreach name="goodsInfo" item="v">
+								<tr class="order-info-detailed">
+									<td>
+										<img class="fl" src="{$v.img_url}" alt="">
+										<div class="fl">
+											<span class='font-14'>{$v.foodname}</span><p>
+											<span>{$v.message}</span><p>
+											<if condition="$v.is_full_discount eq 1">
+												<div class="full-discount-wrapper">
+													<span class="full-discount">
+														减
+													</span>
+													<span>
+														<foreach name="preferential" item="vi">
+															满{$vi.need_number}减{$vi.discount_num}&nbsp;
+														</foreach>
+													</span>
+												</div>
+											</if>
+										</div>		
+									</td>
+									<td>
+										<span class="gray move">
+											<if condition="$v.is_discount eq 1">
+												<span class="text-subspecial">￥{$v.discount_price}</span>
+												<span><del>￥{$v.price}</del></span>
+												<else/><span class="text-subspecial">￥{$v.price}</span>
+							  				 </if>
+										</span>
+									</td>
+									<td>
+										<span>{$v.order_count}</span>		
+									</td>
+									<td>
+										<span class="move">
+											<if condition="$v.is_discount eq 1">
+												<span class="text-subspecial">￥{$v.discountPrice}</span>
+												<span><del>￥{$v.totalPrice}</del></span>
+												<else/><span class="text-subspecial">￥{$v.discountPrice}</span>
+							  				</if>
+										</span>
+									</td>
+								</tr>	
+							</foreach>		
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="wrapper main-wrapper-5">
+					<table class="wrapper">
+						<colgroup>
+							<col style="width: 400px;"/>
+						</colgroup>
+						<thead>
+							<tr>
+								<th colspan="2">送达时间</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<input type="radio" name="time" value="立即送达" checked="checked"/>
+									立即送达
+								</td>
+								<td>
+									<input type="radio" name="time" value="一个小时后"/>
+									一个小时后
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="time" value="一个半小时后"/>
+									一个半小时后
+								</td>
+								<td>
+									<input type="radio" name="time" value="两小时后"/>
+									两小时后
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="wrapper main-wrapper-6">
+					<table class="wrapper">
+						<colgroup>
+							<col style="width: 1100px;"/>
+						</colgroup>
+						<thead>
+							<tr>
+								<th>备注留言</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									<textarea name="message" rows="4" cols="10" placeholder="输入备注信息"></textarea>
+								</td>
+								
+							</tr>
+						</tbody>
+					</table>
+				</div>		
+				
+				<div class="wrapper main-wrapper-7 ">
+					<div class="main-wrapper-7-main">
+						<span class="zhe"><span>合计：</span><span class="price">￥</span><span class="price">{$price}</span><span class="price">元</span><br /></span>
+						<input id="submitPay" type="button" value="立即支付"/>
+					</div>
+				</div>
+			</form>
+		</div>
+			<!--li-->
+		
+		<include file='App/Home/View/Common/commontail.html'/>
+		<include file='App/Home/View/Common/commonlocation.html'/>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript">
+             var $campusId=$("#index-header").attr("data-campusId");
+             var payAtOnceUrl="{:U('/Home/Person/payAtOnce')}";
+             var getPhonerankUrl="{:U('/Home/Person/getPhoneRank')}";
+             var selectCityUrl="{:U('/Home/Person/selectCity')}";
+             var selectCampusUrl="{:U('/Home/Person/selectCampus')}";   
+             var deleteLocationUrl="{:U('/Home/Person/deleteLocation')}";
+		</script>
+		<script type="text/javascript" src="__PUBLIC__/script/pingpp_pay.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/goodsPayment.js"></script>
+	</body>
+</html>

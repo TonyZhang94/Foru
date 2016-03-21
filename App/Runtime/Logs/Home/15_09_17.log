@@ -1,0 +1,65 @@
+[ 2015-09-17T19:17:53+08:00 ] 127.0.0.1 /foru/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.095833s ]
+
+[ 2015-09-17T19:18:12+08:00 ] 127.0.0.1 /foru/index.php/Home/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000433s ]
+
+[ 2015-09-17T19:18:13+08:00 ] 127.0.0.1 /foru/index.php/Home/index/goodslist/categoryId/106/campusId/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000432s ]
+
+[ 2015-09-17T19:18:15+08:00 ] 127.0.0.1 /foru/index.php/Home/Person/personhomepage/campusId/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000474s ]
+
+[ 2015-09-17T19:18:15+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000468s ]
+
+[ 2015-09-17T19:18:16+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000843s ]
+
+[ 2015-09-17T19:18:35+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/toLogin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000394s ]
+
+[ 2015-09-17T19:18:39+08:00 ] 127.0.0.1 /foru/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000366s ]
+
+[ 2015-09-17T19:18:44+08:00 ] 127.0.0.1 /foru/index.php/Home/Person/personhomepage/campusId/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000395s ]
+
+[ 2015-09-17T19:20:23+08:00 ] 127.0.0.1 /foru/index.php/Home/ShoppingCart/shoppingcart/campusId/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000564s ]
+
+[ 2015-09-17T19:20:32+08:00 ] 127.0.0.1 /foru/index.php/Home/Index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000409s ]
+
+[ 2015-09-17T19:20:46+08:00 ] 127.0.0.1 /foru/index.php/Home/index/goodslist/categoryId/105/campusId/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000022s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000366s ]
+
+[ 2015-09-17T19:20:46+08:00 ] 127.0.0.1 /foru/index.php/Home/index/goodslist/categoryId/105/campusId/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000475s ]
+

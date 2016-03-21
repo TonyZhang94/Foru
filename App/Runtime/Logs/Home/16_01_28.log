@@ -1,0 +1,5 @@
+[ 2016-01-28T15:36:55+08:00 ] 127.0.0.1 /foru/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.068330s ]
+

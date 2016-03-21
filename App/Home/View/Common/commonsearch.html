@@ -1,0 +1,112 @@
+<div class="container header-bottom">
+	<div id="header-botton-wrapper">
+		<div id="log-wrapper" class="fl">
+			<div id="header-logo" class="fl">
+				<a href="{:U('/Home/Index/index',array('campusId'=>$campusId))}"><img src="__PUBLIC__/img/logo.png" class="fl"></a>
+				<span class="text-special fl"><p>For优<br><span class="bold inline-block">为你更好的生活</span></span>
+			</div>
+			<div id="header-search" class="fl">
+			    <if condition="$searchHidden eq 1">
+			        <input name="keyword" type="text" placeholder="请输入要查找的商品" value="" list="search-record">
+			    <else/><input name="keyword" type="text" placeholder="请输入要查找的商品" value="{$search}" list="search-record">
+			    </if>
+			
+
+				<datalist id="search-record">
+				
+				</datalist>
+					
+				<button id="search">搜索</button>
+				<ul>
+					<volist name="hotSearch" id="vi">
+						<li>
+						    <a href="{:U('/Home/Index/goodslist',array('search'=>$vi['search_tag'],'campusId'=>$campusId,'categoryName'=>$vi['display_name'],'searchHidden'=>1))}">{$vi.display_name}</a>
+					    </li>			
+					</volist>
+					<!-- <li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'水果','campusId'=>$campusId,'categoryName'=>'新鲜水果','searchHidden'=>1))}">新鲜水果</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'牛奶','campusId'=>$campusId,'categoryName'=>'新鲜牛奶','searchHidden'=>1))}">新鲜牛奶</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'面包','campusId'=>$campusId,'categoryName'=>'美味面包','searchHidden'=>1))}">美味面包</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'休闲','campusId'=>$campusId,'categoryName'=>'休闲零食','searchHidden'=>1))}">休闲零食</a>
+					</li>
+					<li>
+						<a href="{:U('/Home/Index/goodslist',array('search'=>'饮料','campusId'=>$campusId,'categoryName'=>'可口饮料','searchHidden'=>1))}">可口饮料</a>
+					</li> -->
+				</ul>
+			</div>
+
+			<div id="shopping-cart" class="drop-down" >
+				<div class="drop-down-left">
+					<img src="__PUBLIC__/img/icon/shopping-cart.png" alt="">	
+					<a target="_blank" href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}">购物车 &gt;&gt;</a>
+				</div>
+				<div class="drop-down-layer ">
+				   <empty name="cartGood">
+				   		<div class="no-goods">
+						 	当前校区购物车中还没有商品，赶紧去选购吧！
+						</div>
+						<div class="index-shopping-cart clearfix none">							<!-- -->
+				    		<ul class="clearfix">
+				    		   
+				    		</ul>
+				    		<div class="shopping-cart-bottom">
+				    			<span class="block clearfix">
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" class="fl">
+				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
+				    				</a>
+				    				<a href="{:U('/Home/ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    			</span>
+				    		</div>
+				    	</div>
+				    <else/>
+				    	<div class="no-goods none">
+						 	当前校区购物车中还没有商品，赶紧去选购吧！
+						</div>
+				    	<div class="index-shopping-cart clearfix">							<!-- -->
+				    		<ul class="clearfix">
+				    		   <foreach name="cartGood" item="vo">
+				    		       <if condition="$key lt 5">
+					    			   	<li id="{$vo.order_id}">
+					    			   	    <div class="smallgood" data-orderId="{$vo.order_id}">
+					    						<img src="{$vo.img_url}" alt="{$vo.name}">
+					    						<div>{$vo.name}</div>
+					    						<span class="goods-cost fl">
+					    						  <if condition="$vo['is_discount'] eq 1">
+                                                       ￥{$vo.discount_price|number_format=###,1}×{$vo.order_count}
+                                                  <else/>￥{$vo.price|number_format=###,1}×{$vo.order_count}
+					    						  </if>	
+					    						</span>
+					    						<span class="fr">
+					    							<a data-href="{:U('/Home/ShoppingCart/deleteOrders',array('orderIds'=>$vo['order_id']))}">删除</a>
+					    						</span>
+					    					</div>
+					    				</li>
+				    				</if>
+				    		   </foreach>
+				    		</ul>
+				    		<div class="shopping-cart-bottom">
+				    			<span class="block clearfix">
+				    				<a href="{:U('ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" class="fl">
+				    					查看全部<span class="goods-count">{$cartGood|count}</span>件商品
+				    				</a>
+				    				<a href="{:U('ShoppingCart/shoppingcart',array('campusId'=>$campusId))}" id="go-shopping-cart" class="fr">去购物车结算</a>
+				    			</span>
+				    		</div>
+				    	</div>
+				   </empty>
+					
+				
+				</div>
+			</div>
+		<!-- 	<div id="qr-code" class="fr" >
+				<img src="__PUBLIC__/img/qrcode.png" alt="二维码">
+			</div> -->
+		</div>
+	</div>
+</div>

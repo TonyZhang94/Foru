@@ -1,0 +1,31 @@
+<div id="campus-background">
+	<div id="campus">
+		<div id="campus-close">
+			×
+		</div>
+		<div id="campus-head">
+			<span>请选择学校</span>
+			<input type="text" id="campus-search" placeholder="请输入学校的名字"/>
+		</div>
+		<div id="campus-main">
+			<div id="campus-item">
+				<ul id="campus-location">
+					<foreach name="cities" item="city">	
+						<empty name="Think.cookie.cityId"><assign name="Think.cookie.cityId" value="1"/></empty>				
+						<if condition="cookie('cityId') eq $city['city_id']">
+							<li data-city="{$city.city_id}" class="active">{$city.city_name}</li>
+							
+							<else/><li data-city="{$city.city_id}">{$city.city_name}</li>
+						</if>
+					</foreach>
+				</ul>
+			</div>
+
+			<div id="campus-content">
+				<ul>
+					
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

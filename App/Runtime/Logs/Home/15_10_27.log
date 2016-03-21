@@ -1,0 +1,50 @@
+[ 2015-10-27T16:41:51+08:00 ] 127.0.0.1 /foru/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.005954s ]
+
+[ 2015-10-27T16:41:55+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000688s ]
+
+[ 2015-10-27T16:41:55+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/verify/id/'+Math.random()
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000038s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000650s ]
+
+[ 2015-10-27T16:42:14+08:00 ] 127.0.0.1 /foru/index.php/Home/Login/toLogin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000621s ]
+
+[ 2015-10-27T16:42:14+08:00 ] 127.0.0.1 /foru/index.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000041s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000657s ]
+
+[ 2015-10-27T16:42:17+08:00 ] 127.0.0.1 /foru/index.php/Home/Person/personhomepage.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000042s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000667s ]
+
+[ 2015-10-27T16:42:21+08:00 ] 127.0.0.1 /foru/index.php/Home/Person/locaManage/campusId/1.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000486s ]
+
+[ 2015-10-27T16:42:21+08:00 ] 127.0.0.1 /foru/index.php/Home/Person/selectCity
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000039s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000615s ]
+
+[ 2015-10-27T16:42:21+08:00 ] 127.0.0.1 /foru/index.php/Home/Person/selectCampus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000025s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000482s ]
+
+[ 2015-10-27T16:42:36+08:00 ] 127.0.0.1 /foru/index.php/Home/Person/selectCampus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000613s ]
+

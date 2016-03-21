@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		
+		<title>For优 地址管理</title>
+	</head>
+	<body>
+		<include file='App/Home/View/Common/commonhead.html'/>
+		<div id="index-header" >
+			<include file='App/Home/View/Common/commonsearch.html'/>
+
+			<include file='App/Home/View/Common/commonnav.html'/>
+
+			<div id="nav-breadcrumb" class="wrapper">
+				<ul class="breadcrumb">
+					<li><a href="{:U('Index/index',array('campusId'=>$campusId))}">首页</a></li>
+					<li><a href="{:U('/Home/Person/personHomePage',array('campusId'=>$campusId))}">我的For优</a></li>
+					<li class="active"><a href="__SELF__">地址管理</a></li>
+				</ul>
+			</div>
+		</div>
+        <div id="info" data-campusId="{$campusId}"></div>
+		<div class="wrapper clearfix" >
+			<div id="person-nav-side">
+				<ul>
+					<span>我的订单</span>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>0))}">全部</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>1))}">待付款</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>2))}">待确认</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>3))}">配送中</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>4))}">待评价</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>5))}">已完成</a></li>
+				</ul>
+				<ul>
+					<span>资料管理</span>
+					<li><a href="{:U('Person/personInfo',array('campusId'=>$campusId))}">个人信息</a></li>
+					<li class="active"><a href="{:U('Person/locaManage',array('campusId'=>$campusId))}">地址管理</a></li>
+					<li><a href="{:U('Person/resetpword',array('campusId'=>$campusId))}">账户安全</a></li>
+				</ul>
+				<ul>
+					<span>服务中心</span>
+					<li><a>联系客服</a></li>
+					<li><a>关于我们</a></li>
+					<li><a>意见反馈</a></li>
+				</ul>
+			</div>
+				
+			<div id="person-info-body">
+				<div class="info-title">
+					地址管理
+				</div>
+				<div id="person-location-info">
+					<table>
+						<colgroup>
+							<col width="300">
+							<col width="350">
+							<col width="250">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>收货人</th>
+								<th>地址</th>
+								<th>操作</th>
+							</tr>
+						</thead>
+						<tbody>
+							<foreach name="data" item="v">				
+								<tr>
+									<td>
+										收货人：{$v['name']}<p>
+										联系电话：{$v['phone']}
+									</td>
+									<td>{$v['address']}</td>
+									<td>
+										<!-- <form action="{:U('Person/deleteAddress',array('campusId'=>$campusId))}" method=post> -->
+										
+										<button class="revise-button">修改</button>
+										<button class="delete-button">删除地址</button>
+										<input class="phone-none none" value="{$v.phone}"> 
+										<input class="rank-none none"  value="{$v.rank}"> 	
+										<!-- </form> -->
+									</td>
+									
+								</tr>
+							</foreach>
+						</tbody>
+					</table>
+						<button id="add-location">
+							新增收货地址
+						</button>
+					<!-- </form> -->
+				</div>
+				<form id="receiver_form" action="{:U('Person/addOrReviseSave',array('campusId'=>$campusId))}" method='post'>
+					<div id="change-location" class="none">
+						<div id="change-location-info">
+						    <div class="location-info-div clearfix" >
+						    	<div class="fl none">
+						    	    <span class="locationinfo-before">rank:</span>
+						    		<input type="text" id="rank" name="rank" value="0"/>	
+						    	</div>
+						    </div>
+							<div class="location-info-div clearfix" >
+								<span class="locationinfo-before">收货人:</span>
+								<div class="fl">
+									<input type="text" id="userName" name="user-name" required/>
+
+								</div>
+							</div>
+							<div class="location-info-div clearfix">
+								
+								<div class="fl" style="margin-bottom:10px">
+									<span style="padding-left:59px" class="inline-block">城市:</span>
+									<select id="location1" name="select-location-1">
+									</select>
+									<span style="margin-left:10px">校区:</span>
+									<select id="location2" name="select-location-2">
+									</select>
+								</div>
+							</div>
+							<div class="location-info-div clearfix">
+								<span class="locationinfo-before">详细地址:</span>
+								<div class="fl">
+									<input type="text" id="detailedLoc" name="detailed-location" required/>
+								</div>
+							</div>
+							<div class="location-info-div clearfix">
+								<span class="locationinfo-before">手机号:</span>
+								<div class="fl">
+									<input type="text" pattern="1[0-9]{10}" id="phoneNum" name="phone-number" required/>
+								</div>
+							</div>
+
+							<div class="location-info-div clearfix">
+								<span class="locationinfo-before"></span>
+								<div class="fl">
+									<input type="text" id="page" name="page" value="0" class="none"/>
+									<input type="submit" name="submit-location-info" value="保存" id="recevier_submit_button" class="" />
+									<input type="submit" name="submit-location-info" value="保存" id="recevier_submit_button_revise" class="none" />
+									<input type="button" id="cancel-button" value="取消" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		
+		<include file='App/Home/View/Common/commontail.html'/>
+		<include file='App/Home/View/Common/commonlocation.html'/>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript">
+               var $campusId=$("#info").attr('data-campusId');
+		</script>
+		<script type="text/javascript" src="__PUBLIC__/script/locamanage.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+	</body>
+</html>

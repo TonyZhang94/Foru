@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+	
+		<title>For优 商品信息</title>
+		<style>
+			body{
+				background-color: #fff;
+			}
+		</style>
+	</head>
+
+	<body>
+		<include file='App/Home/View/Common/commonhead.html'/>
+		<div id="index-header" data-campusId="{$campusId}">
+
+			<include file='App/Home/View/Common/commonsearch.html'/>
+
+			<include file='App/Home/View/Common/commonnav.html'/>
+
+			<div id="nav-breadcrumb" class="wrapper">
+				<!-- <ul class="breadcrumb">
+					<li><a href="{:U('Index/index')}">首页</a></li>
+					<li><a href="#">小优推荐</a></li>
+					<li class="active"><a href="#">有机草莓</a></li>
+				</ul> -->
+			</div>
+		</div>
+
+		<div class="wrapper">
+			<div class="goods-info-index w clearfix">
+				<div class="goods-info-img fl">
+					<dl>
+						<dt>
+							<img src="{$good['img'][0]}" alt="">
+						</dt>
+						<dd>
+							<span class="pointer left-pointer">&lt;</span>
+
+							<div id="good-info-slide">
+								<ul class="clearfix">	
+								    <foreach name="good['img']" item="img">
+								    		<li><img src="{$img}" alt=""></li>
+								    </foreach>
+								</ul>		
+							</div>
+							<span class="pointer right-pointer">&gt;</span>
+							<input type="" value="0" class="none">
+						</dd>
+					</dl>
+				</div>
+				<div class="goods-info-detailed fl">
+					<div class="img-and-detailed-head">
+						<h1>{$good.name}</h1>
+						
+						<p>{$good.message}</p>
+					</div>
+					<div class="img-and-detailed-body">
+						<dl class="clearfix">
+							<dt>价格:</dt>
+							<dd>
+							  <if condition="$good.is_discount eq 1">
+								<span class="discount-price">￥{$good.discount_price}</span>
+								<span class="bef-price">原价:￥{$good.price}</span>
+								<else/><span class="discount-price">￥{$good.price}</span>
+							  </if>
+							</dd>
+						</dl>
+						<dl  class="clearfix">
+							<dt>评价:</dt>
+							<dd>
+							    <for start="1" end="6">
+							         <?php if($good['grade']>=$i)
+							                 echo '<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>';
+							                else echo '<span class="glyphicon glyphicon-star eval-star"></span>';
+							        ?>
+							    </for>						
+								<span>{$good.grade}</span>
+							</dd>
+						</dl>
+						<dl  class="clearfix">
+							<dt>配送至:</dt>
+							<dd>
+								<p>{$campus.campus_name}</p>
+							</dd>
+						</dl>
+						<dl  class="clearfix">
+							<dt>数量:</dt>
+							<dd>
+								<td>
+									<a class="sub-goods">-</a>
+									<input id="goods-count" class="goods-count" type="text" value="1" disabled="true">
+									<a class="add-goods">+</a>
+								</td>
+							</dd>
+						</dl>
+						<div>
+							<button class="buy-now">立即购买</button>
+							<button class="put-cart">加入购物车</button>
+						</div>
+					</div>
+				</div>
+				<input type="text" id="campusId-none" class="none" value="{$campus.campus_id}">
+				<input type="text" id="foodId-none" class="none" value="{$good.food_id}">
+			</div>
+			<div class="img-and-evaluate w">
+				<div class="img-and-evaluate-head">
+					<ul class="clearfix">
+						<!-- <li><a>图文详情</a></li> -->
+						<li class="active"><a>商品评价</a></li>
+					</ul>
+				</div>
+				<div id="evaluate-body">
+					<table>
+						<colgroup>
+							<col width="100">
+							<col width="1000">
+						</colgroup>
+						<thead>
+							<tr>
+								<th>
+									<span class="eval-scores">{$good.grade}</span>
+									<span>分</span>
+								</th>
+								<th>
+									 <for start="1" end="6">
+							         <?php if($good['grade']>=$i)
+							                 echo '<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>';
+							                else echo '<span class="glyphicon glyphicon-star eval-star"></span>';
+							        ?>
+							    </for>	
+								</th>
+							</tr>
+						</thead>
+						<tbody>			
+						    <foreach name="comments" item="com">
+						    	<tr class="eval-info-detailed">
+								<td>
+									<img src="{$com.img_url|default='__PUBLIC__/img/user-img.png'}" alt="">
+								</td>
+								<td>
+									<div class="eval-info-detailed-score">
+										<for start="1" end="6">
+									         <?php if($good['grade']>=$i)
+									                 echo '<span class="glyphicon glyphicon-star eval-star eval-star-positive"></span>';
+									                else echo '<span class="glyphicon glyphicon-star eval-star"></span>';
+									        ?>
+									     </for>
+										<span>{$com.grade}分</span>
+									</div>
+									<div class="eval-info-detailed-mark">
+										{$com.comment}
+									</div>
+								</td>	
+							</tr>
+						    </foreach>			
+						</tbody>
+					</table>
+					
+					<div>
+						
+					</div>
+				</div>
+				
+				<div id="goods-img-detailed" class="none w">
+				    <foreach name="good['img']" item="img">
+				    	<img src="{$img}" alt="">
+				    </foreach>				
+				</div>
+			</div>
+			<div class="msg-page">
+		    	 <div class="page">{$page}</div>
+	        </div>
+			
+		</div>
+	
+		<include file='App/Home/View/Common/commontail.html'/>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/fly.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript">
+               var $campusId=$("#index-header").attr('data-campusId');
+		</script>
+		<script src="__PUBLIC__/script/goodsinfo.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+	</body>
+</html>

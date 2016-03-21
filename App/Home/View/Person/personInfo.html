@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link href="__PUBLIC__/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/css/commonstyle.css" rel="stylesheet" />
+		<link href="__PUBLIC__/css/style.css" rel="stylesheet"/>
+		
+		<title>For优 个人信息</title>
+	</head>
+	<body>
+		<include file='App/Home/View/Common/commonhead.html'/>
+
+		<div id="index-header" data-campusId="{$campusId}">
+			<include file='App/Home/View/Common/commonsearch.html'/>
+
+			<include file='App/Home/View/Common/commonnav.html'/>
+            <div id="info"></div>
+			<div id="nav-breadcrumb" class="wrapper">
+				<ul class="breadcrumb">
+					<li><a href="{:U('Index/index',array('campusId'=>$campusId))}">首页</a></li>
+					<li><a href="{:U('Person/personHomePage',array('campusId'=>$campusId))}">我的For优</a></li>
+					<li class="active"><a href="__SELF__">个人信息</a></li>
+				</ul>
+			</div>
+		</div><!--.index-header-->
+		<div class="wrapper clearfix" >
+			<div id="person-nav-side">
+				<ul>
+					<span>我的订单</span>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>0))}">全部</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>1))}">待付款</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>2))}">待确认</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>3))}">配送中</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>4))}">待评价</a></li>
+					<li><a href="{:U('Person/orderManage',array('campusId'=>$campusId,'status'=>5))}">已完成</a></li>
+				</ul>
+				<ul>
+					<span>资料管理</span>
+					<li class="active"><a href="{:U('Person/personInfo',array('campusId'=>$campusId))}">个人信息</a></li>
+					<li><a href="{:U('Person/locaManage',array('campusId'=>$campusId))}">地址管理</a></li>
+					<li><a href="{:U('Person/resetpword',array('campusId'=>$campusId))}">账户安全</a></li>
+				</ul>
+				<ul>
+					<span>服务中心</span>
+					<li><a>联系客服</a></li>
+					<li><a>关于我们</a></li>
+					<li><a>意见反馈</a></li>
+				</ul>
+			</div>
+
+			<div id="person-info-body">
+				<div class="info-title">
+					个人信息
+				</div>
+				<div class="tab-div">
+					<button id="tab-1" <?php if ($active == "0") echo "class='active'" ?>>
+						基本资料
+					</button>
+					<button id="tab-2" <?php if ($active == "1") echo "class='active'" ?>>
+						更换头像
+					</button>
+				</div>
+				<!-- <form action="{:U('Person/submit',array('campusId'=>$campusId))}" name="form" method="post"> -->
+					<div id="person-basic-info" <?php if ($active == "1") echo "class='none'" ?> >
+						<div class="person-info-div clearfix" >
+							<span class="personinfo-before">昵称:</span>
+							<div class="fl">
+								<input type="text" id="nickname" name="nick-name" value="{$data.nickname}" />
+							</div>
+						</div>
+						<!-- <form action="Person.php" method="post"> -->
+							<div class="person-info-div clearfix" >
+								<span class="personinfo-before">性别:</span>
+								<div class="fl">
+									<input type="radio" name="user-sex" value="0" 
+									<?php if ($data['sex'] != "1") echo 'checked="checked"' ?>
+									/><label>男</label>
+									<input type="radio" name="user-sex" value="1" 
+									<?php if ($data['sex'] == "1") echo 'checked="checked"' ?>
+									/><label>女</label>
+								</div>
+							</div>
+						<!-- </form> -->
+						<div class="person-info-div clearfix" >
+							<span class="personinfo-before">学院:</span>
+							<div class="fl">
+								<input type="text" id="academy" name="academy" value="{$data.academy}" />
+							</div>
+						</div>
+						<div class="person-info-div clearfix" >
+							<span class="personinfo-before">QQ号:</span>
+							<div class="fl">
+								<input type="text" id="qq" name="qq-num" value="{$data.qq}" />
+							</div>
+						</div>
+						<div class="person-info-div clearfix" >
+							<span class="personinfo-before">微信号:</span>
+							<div class="fl">
+								<input type="text" id="weixin" name="weixin-num" value="{$data.weixin}" />
+							</div>
+						</div>
+						<div class="person-info-div clearfix" >
+							<span class="personinfo-before"></span>
+							<div class="fl">
+								<input type="submit" name="submit" value="提交" onclick="savePersonInfo();" />
+							</div>
+						</div>
+					</div>
+				<!-- </form> -->
+				<form action="{:U('Person/savePortrait',array('campusId'=>$campusId))}" name="form" method="post" id="form1" runat="server" enctype="multipart/form-data">
+					<div id="change-image-wrapper" <?php if ($active == "0") echo "class='none'" ?> >	
+						<div id="change-image" class="clearfix">
+							<div class="fl">
+								<dl>
+									<dd>当前头像</dd>
+									<dt>
+										<div id="preview">
+										  <img id="presentimg" src="{$data.img_url}" alt=""/>
+									    </div>
+									</dt>
+								</dl>
+								<p value="{$data.new_url}" id="new_url"/>
+								<a  class="file">
+										选择上传的头像
+									<input type="file" name="img" id="img" onchange="updateImg(this);">
+								</a>								   
+							</div>
+							<div class="fl">
+								<dl>
+									<dd>预览效果</dd>
+									<dt>
+										<div id="smallPreview">
+										 <img id="previewimg" src="{$data.img_url}" alt=""/>
+									    </div>
+									</dt>
+									<span>
+										*照片尺寸需要大于250*250像素，请使用JPG、GIF、JPEG、BMP格式图片，文件不要超过4M
+									</span>
+								</dl>
+							</div>
+						</div>
+						<input type="submit" value="保存">
+					</div>
+				</form>
+			</div>
+		</div>
+		<include file='App/Home/View/Common/commontail.html'/>
+		<include file='App/Home/View/Common/commonlocation.html'/>
+
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery-1.11.2.js"></script>
+		<script type="text/javascript">
+   			 var savePersonInfoUrl="{:U('/Home/Person/savePersonInfo')}";
+   			 var $campusId=$('#index-header').attr('data-campusId');
+		</script>
+		<script type="text/javascript" src="__PUBLIC__/script/personinfo.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/plugins/jquery.cookie.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/script/common.js"></script>
+	</body>
+</html>
