@@ -1,4 +1,4 @@
-# foru 
+# Foru 
 for 苏州倡予信息科技有限公司
 <hr>
 Foru is a campus electronic business platform which base on PHP(ThinkPHP) and HTML5&CSS3 with technology of JQuery-1.11.2.
